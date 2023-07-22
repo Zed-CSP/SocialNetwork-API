@@ -1,7 +1,7 @@
-const {schema, model} = require('mongoose');
+const {Schema, model} = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const UserSchema = new schema(
+const UserSchema = new Schema(
     {
         username: {
             type: String,
@@ -24,13 +24,13 @@ const UserSchema = new schema(
         },
         friends: [
             {
-                type: schema.Types.ObjectId,
+                type: Schema.Types.ObjectId,
                 ref: 'User'
             }
         ],
         thoughts: [
             {
-                type: schema.Types.ObjectId,
+                type: Schema.Types.ObjectId,
                 ref: 'Thought'
             }
         ]
