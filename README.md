@@ -1,7 +1,7 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # socialNetwork-API
 Social Network noSQL database API testing
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   
   ## Description
   This application is the backend of a social network API. This diplays Utilization Of a noSQL Dataabase. The utility of this database is displayed through a Social media application where users can share their thoughts, comment or react on others' thoughts, and create a friend list. 
