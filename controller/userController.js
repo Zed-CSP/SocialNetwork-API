@@ -42,7 +42,7 @@ const getUserById = async (req, res) => {
 
 // create user
 const createUser = async (req, res) => {
-    console.log(req.body);
+    console.log(req.body); // Add this line
     try {
         const newUser = await User.create(req.body);
         res.json(newUser);
