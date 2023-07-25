@@ -1,4 +1,4 @@
-const { Schema, Types } = require('mongoose'); // import the necessary dependencies
+const { Schema, Types, model } = require('mongoose'); // import the necessary dependencies
 const format_date = require('../utils/dateFormat'); // import the dateFormat function
 
 const reactionSchema = new Schema(

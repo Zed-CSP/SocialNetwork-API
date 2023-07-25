@@ -1,6 +1,6 @@
-module.exports = {
-    db: {
-        mongoURI: process.env.MONGODB_URI || 'mongodb://localhost/social-network-api'
-    },
-    port: process.env.PORT || 3006
-};
+const mongoose = require('mongoose');
+
+
+const connection = mongoose.connect('mongodb://127.0.0.1:27017/socialNetworkDB');
+
+module.exports = connection;

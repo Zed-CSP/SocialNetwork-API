@@ -1,8 +1,8 @@
-const {thoughts, users} = require('../model');
+const {Thoughts, User} = require('../model');
 
 const getAllThoughts = async (req, res) => {
     try {
-        const thoughtsData = await thoughts.find({})
+        const thoughtsData = await Thoughts.find({})
         .populate({
             path: 'reactions',
         })
@@ -17,7 +17,7 @@ const getAllThoughts = async (req, res) => {
 
 const getThoughtsById = async (req, res) => {
     try {
-        const thoughtsData = await thoughts.findOne({_id: req.params.id})
+        const thoughtsData = await Thoughts.findOne({_id: req.params.id})
         .populate({
             path: 'reactions',
         })
@@ -32,8 +32,8 @@ const getThoughtsById = async (req, res) => {
 
 const createThoughts = async (req, res) => {
     try {
-        const thoughtsData = await thoughts.create(req.body);
-        const userData = await users.findOneAndUpdate(
+        const thoughtsData = await Thoughts.create(req.body);
+        const userData = await User.findOneAndUpdate(
             {_id: req.body.userId},
             {$push: {thoughts: thoughtsData._id}},
             {new: true}
@@ -47,7 +47,7 @@ const createThoughts = async (req, res) => {
 
 const updateThoughts = async (req, res) => {
     try {
-        const thoughtsData = await thoughts.findOneAndUpdate(
+        const thoughtsData = await Thoughts.findOneAndUpdate(
             {_id: req.params.id},
             req.body,
             {new: true}
@@ -61,7 +61,7 @@ const updateThoughts = async (req, res) => {
 
 const deleteThoughts = async (req, res) => {
     try {
-        const thoughtsData = await thoughts.findOneAndDelete({_id: req.params.id});
+        const thoughtsData = await Thoughts.findOneAndDelete({_id: req.params.id});
         res.json(thoughtsData);
     } catch (err) {
         console.log(err);
@@ -71,7 +71,7 @@ const deleteThoughts = async (req, res) => {
 
 const addReaction = async (req, res) => {
     try {
-        const thoughtsData = await thoughts.findOneAndUpdate(
+        const thoughtsData = await Thoughts.findOneAndUpdate(
             {_id: req.params.thoughtsId},
             {$push: {reactions: req.body}},
             {new: true}
@@ -85,7 +85,7 @@ const addReaction = async (req, res) => {
 
 const removeReaction = async (req, res) => {
     try {
-        const thoughtsData = await thoughts.findOneAndUpdate(
+        const thoughtsData = await Thoughts.findOneAndUpdate(
             {_id: req.params.thoughtsId},
             {$pull: {reactions: {reactionId: req.params.reactionId}}},
             {new: true}

@@ -1,9 +1,11 @@
-const {user, thoughts} = require('../model');
+const User = require('../model/User');
+const Thought = require('../model/Thoughts');
+
 
 // get all users
 const getAllUsers = async (req, res) => {
     try {
-        const userData = await user.find({})
+        const userData = await User.find({})
         .populate({
             path: 'thoughts',
         })
@@ -22,7 +24,7 @@ const getAllUsers = async (req, res) => {
 // get one user by id
 const getUserById = async (req, res) => {
     try {
-        const userData = await user.findOne({_id: req.params.id})
+        const userData = await User.findOne({_id: req.params.id})
         .populate({
             path: 'thoughts',
         })
@@ -40,9 +42,10 @@ const getUserById = async (req, res) => {
 
 // create user
 const createUser = async (req, res) => {
+    console.log(req.body);
     try {
-        const userData = await user.create(req.body);
-        res.json(userData);
+        const newUser = await User.create(req.body);
+        res.json(newUser);
     } catch (err) {
         console.log(err);
         res.sendStatus(400);
@@ -52,7 +55,7 @@ const createUser = async (req, res) => {
 // update user by id
 const updateUser = async (req, res) => {
     try {
-        const userData = await user.findOneAndUpdate(
+        const userData = await User.findOneAndUpdate(
             {_id: req.params.id},
             req.body,
             {new: true}
@@ -67,7 +70,7 @@ const updateUser = async (req, res) => {
 // delete user by id
 const deleteUser = async (req, res) => {
     try {
-        const userData = await user.findOneAndDelete({_id: req.params.id});
+        const userData = await User.findOneAndDelete({_id: req.params.id});
         res.json(userData);
     } catch (err) {
         console.log(err);
@@ -78,7 +81,7 @@ const deleteUser = async (req, res) => {
 // add friend
 const addFriend = async (req, res) => {
     try {
-        const userData = await user.findOneAndUpdate(
+        const userData = await User.findOneAndUpdate(
             {_id: req.params.userId},
             {$push: {friends: req.params.friendId}},
             {new: true}
@@ -93,7 +96,7 @@ const addFriend = async (req, res) => {
 // remove friend
 const removeFriend = async (req, res) => {
     try {
-        const userData = await user.findOneAndUpdate(
+        const userData = await User.findOneAndUpdate(
             {_id: req.params.userId},
             {$pull: {friends: req.params.friendId}},
             {new: true}

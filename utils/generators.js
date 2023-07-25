@@ -1,6 +1,5 @@
 // email generator
-
-const faker = require('faker');
+const { faker } = require('@faker-js/faker')
 
 const generateEmail = () => {
     return faker.internet.email();
