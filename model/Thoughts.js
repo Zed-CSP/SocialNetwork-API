@@ -1,6 +1,7 @@
-const {Schema, model} = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+const mongoose = require('mongoose');
 const reactionSchema = require('./Reaction');
+const { Schema, model } = mongoose;
+
 
 const thoughtSchema = new Schema(
     {
@@ -9,11 +10,6 @@ const thoughtSchema = new Schema(
             required: [true, 'Thought is required'],
             minlength: [1, 'Thought must be at least 1 character long'],
             maxlength: [280, 'Thought must be less than 280 characters long']
-        },
-        createdAt: {
-            type: Date,
-            default: Date.now,
-            get: createdAtVal => dateFormat(createdAtVal)
         },
         userId: {
             type: Schema.Types.ObjectId,
@@ -28,7 +24,8 @@ const thoughtSchema = new Schema(
             virtuals: true,
             getters: true
         },
-        id: false
+        id: false,
+        timestamps: true
     }
 );
 
@@ -38,4 +35,4 @@ thoughtSchema.virtual('reactionCount').get(function() {
 
 const Thought = model('Thought', thoughtSchema);
 
-module.exports = Thought;
+module.exports = mongoose.model('Thought', thoughtSchema);

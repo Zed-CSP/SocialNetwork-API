@@ -2,6 +2,7 @@ const Thought = require('../model/Thoughts');
 const User = require('../model/User');
 
 const getAllThoughts = async (req, res) => {
+    console.log('Get All Thoughts Route Hit');  // Add this line
     try {
         const thoughtsData = await Thought.find({})
         .populate({
