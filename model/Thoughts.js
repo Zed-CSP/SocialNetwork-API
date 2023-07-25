@@ -15,10 +15,10 @@ const thoughtSchema = new Schema(
             default: Date.now,
             get: createdAtVal => dateFormat(createdAtVal)
         },
-        username: {
-            type: String,
-            required: [true, 'Username is required']
-        },
+        userId: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },        
         reactions: [
             reactionSchema
         ]
