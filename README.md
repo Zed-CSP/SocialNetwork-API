@@ -61,7 +61,11 @@ Social Network noSQL database API testing
   
   ## Demo
 
-*WIP
+
+
+https://github.com/Zed-CSP/socialNetwork-API/assets/123341169/fa991353-ad60-4a18-99ae-9a02559209a0
+
+
   
   ## Tests
   You may test the API routes using an API Platform such as Postman.
